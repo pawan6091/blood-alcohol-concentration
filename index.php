@@ -12,7 +12,7 @@
 <body>
   <div class="container">
     <h2>Blood Alcohol Concentration Calculator</h2>
-    <form action="calculate_bac.php" method="POST">
+    <form action="calculate_bac.php" method="POST" id="bac-form">
       <label for="weight">Weight:</label>
       <input type="number" id="weight" name="weight" placeholder="Enter your weight" required>
 
@@ -43,10 +43,16 @@
     </form>
 
     <div class="output-wrapper">
-      <div> Your Blood Concentration is: <span>0.08%</span></div>
-      <div> Safe to drive </div>
+      <?php
+      if (isset($_GET['bac']) && isset($_GET['safe_index'])) {
+        echo "<div> Your Blood Concentration is: <span>" . htmlspecialchars(($_GET['bac'])) . "</span></div>";
+        echo "<div>" . $_GET['safe_index'] . "</div>";
+      } else {
+        echo "<div> Your Blood Concentration is: <span>0.08%</span></div>
+<div> Safe to drive </div>";
+      }
+      ?>
     </div>
   </div>
 </body>
-
 </html>
